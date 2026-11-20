@@ -61,8 +61,22 @@ function buscarPokemon(nombrePokemon) {
     .catch(error => alert(`${error}`));
 }*/
 
-// Ejercicio 3: BUSCAR POKEMON JQUERY AJAX
-function buscarPokemon(nombrePokemon) {
+/**
+ *  Descomentar para hacer uso de la función.
+ */
+/*
+document.getElementById('search-btn').addEventListener('click', () => {
+    // Para que cambie de pokemon cuando se busque otro valor
+    let pokemon = document.getElementById("pokemon-input").value;
+    buscarPokemon(pokemon);
+});*/
+
+
+/**
+ * Ejercicio 3: buscar pokemon con JQuery AJAX.
+ */
+
+function buscarPokemonJQueryAJAX(nombrePokemon){
     $.ajax ({
         type: "GET",
         url: `https://pokeapi.co/api/v2/pokemon/${nombrePokemon}`,
@@ -84,29 +98,12 @@ function buscarPokemon(nombrePokemon) {
 }
 
 /**
- *  Descomentar para hacer uso de la función.
- */
-document.getElementById('search-btn').addEventListener('click', () => {
-    let pokemon = document.getElementById("pokemon-input").value;
-    buscarPokemon(pokemon);
-});
-
-
-/**
- * Ejercicio 3: buscar pokemon con JQuery AJAX.
- */
-
-function buscarPokemonJQueryAJAX(){
-    /**
-     * Tu código aquí.
-     */
-}
-
-/**
  * Haciendo uso de JQuery, descomentar para usar la función buscarPokemonJQueryAJAX
 */
-/**
 $(document).ready(function(){
-    $('#search-btn').on('click', buscarPokemonJQueryAJAX);
+    $('#search-btn').on('click', () => {
+        // Para que cambie de pokemon cuando se busque otro valor
+        let pokemon = document.getElementById("pokemon-input").value;
+        buscarPokemonJQueryAJAX(pokemon);
+    });
 }); 
-*/
