@@ -75,6 +75,7 @@ document.getElementById('search-btn').addEventListener('click', () => {
 /**
  * Ejercicio 3: buscar pokemon con JQuery AJAX.
  */
+let pokemonAtrapados = [];
 
 function buscarPokemonJQueryAJAX(nombrePokemon){
     $.ajax ({
@@ -87,8 +88,19 @@ function buscarPokemonJQueryAJAX(nombrePokemon){
                 <div>
                     <p>${pokemon.id}: ${pokemon.name}</p>
                     <img src=${pokemon.sprites.front_default}>
+                    <button id="agregar">Agregar a la colección</button>
                 </div>
             `;
+
+            // Aquí ya existe el botón para agregar el pokemon
+            document.getElementById("agregar").addEventListener("click", () => {
+                if (!pokemonAtrapados.some(p => p.nombre == pokemon.name)) { // Si el array no tiene el pokemon, lo mete
+                    pokemonAtrapados.push({
+                        "nombre": pokemon.name, 
+                        "sprite": pokemon.sprites.front_default
+                    });
+                }
+            });
         },
         
         error: function() { // Si hay algún error, lo muestra (como el catch)
@@ -105,5 +117,26 @@ $(document).ready(function(){
         // Para que cambie de pokemon cuando se busque otro valor
         let pokemon = document.getElementById("pokemon-input").value;
         buscarPokemonJQueryAJAX(pokemon);
+        console.log(pokemonAtrapados);
     });
-}); 
+});
+
+function mostrarColeccion() {
+    let contenedor = document.getElementById("collection-list");
+    contenedor.replaceChildren(); // Para no duplicar los pokemon al mostrar
+
+    pokemonAtrapados.forEach(p => {
+        let tarjeta = document.createElement("div");
+
+        let nombrePokemon = document.createElement("p");
+        nombrePokemon.textContent = p.nombre;
+
+        let spritePokemon = document.createElement("img");
+        spritePokemon.src = p.sprite;
+
+        tarjeta.append(nombrePokemon, spritePokemon);
+        contenedor.appendChild(tarjeta);
+    });
+}
+
+document.getElementById("view-collection-btn").addEventListener("click", mostrarColeccion);

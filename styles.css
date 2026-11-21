@@ -102,7 +102,7 @@ body::before {
 }
 
 /* Botón "Ver mi colección" */
-#view-collection-btn {
+#view-collection-btn, #agregar {
   padding: 0.7rem 1.2rem;
   font-size: 1rem;
   margin: 2rem 0; /* Espaciado en la parte superior e inferior */
@@ -115,7 +115,7 @@ body::before {
   text-align: center;
 }
 
-#view-collection-btn:hover {
+#view-collection-btn:hover, #agregar:hover {
   background-color: #ff6347;
 }
 
@@ -180,4 +180,9 @@ button {
 
 .btn-style:hover {
   background-color: #ff6347;
+}
+
+#agregar {
+  display: block;
+  margin: 2rem auto;
 }
